@@ -1,0 +1,405 @@
+---
+// Skills.astro
+
+const skillsRow1 = [
+  'Broadcast Reporting', 'Voice-Over Production', 'News Writing', 'Media Analysis',
+  'Field Research', 'Newsroom Operations', 'Live Broadcasting', 'Video Scripting',
+];
+
+const skillsRow2 = [
+  'Ethical Journalism', 'Community Reporting', 'Documentary Research', 'Event Coverage',
+  'News Anchoring', 'Environmental Journalism', 'Political Reporting', 'Interview Techniques',
+];
+
+const coreSkills = [
+  { name: 'Broadcast Reporting', level: 90, icon: '📡' },
+  { name: 'Voice-Over & Newsreading', level: 95, icon: '🎙️' },
+  { name: 'Research & Investigation', level: 85, icon: '🔍' },
+  { name: 'Media Analysis', level: 80, icon: '📊' },
+  { name: 'Ethical Journalism', level: 92, icon: '⚖️' },
+  { name: 'Field Reporting', level: 88, icon: '🗺️' },
+];
+
+const languages = [
+  { lang: 'Malayalam', level: 'Native' },
+  { lang: 'English', level: 'Professional' },
+  { lang: 'Hindi', level: 'Conversational' },
+];
+---
+
+<section id="skills" class="section skills-section" aria-label="Skills">
+  <div class="skills-bg" aria-hidden="true"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header reveal-up" id="skills-header">
+      <span class="label">Skills & Expertise</span>
+      <div class="divider"></div>
+      <h2 class="headline">
+        Tools of the<br/><em>trade.</em>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Marquee 1 -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track track-1" id="marquee-1">
+      {[...skillsRow1, ...skillsRow1].map(s => (
+        <div class="marquee-item">
+          <span class="marquee-dot"></span>
+          <span>{s}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Marquee 2 (reverse) -->
+  <div class="marquee-wrap" aria-hidden="true" style="margin-top: -1rem;">
+    <div class="marquee-track track-2" id="marquee-2">
+      {[...skillsRow2, ...skillsRow2].map(s => (
+        <div class="marquee-item marquee-item-alt">
+          <span class="marquee-dot marquee-dot-blue"></span>
+          <span>{s}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Core skill bars -->
+    <div class="skills-grid reveal-up" id="skills-grid">
+      {coreSkills.map((sk, i) => (
+        <div class="skill-bar-item" id={`skill-bar-${i}`}>
+          <div class="skill-bar-top">
+            <span class="skill-icon" aria-hidden="true">{sk.icon}</span>
+            <span class="skill-name">{sk.name}</span>
+            <span class="skill-pct label" data-level={sk.level}>0%</span>
+          </div>
+          <div class="skill-track">
+            <div
+              class="skill-fill"
+              data-level={sk.level}
+              style="width: 0%;"
+            ></div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Language & soft skills row -->
+    <div class="bottom-row reveal-up" id="skills-bottom">
+
+      <!-- Languages -->
+      <div class="lang-card">
+        <p class="label" style="margin-bottom: 1.5rem;">Languages</p>
+        <div class="lang-list">
+          {languages.map(l => (
+            <div class="lang-item">
+              <span class="lang-name">{l.lang}</span>
+              <span class="lang-level label" style="color: var(--muted); text-transform: none; font-size: 12px;">{l.level}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="values-card">
+        <p class="label" style="margin-bottom: 1.5rem;">Journalism Values</p>
+        <div class="value-list">
+          {['Truth & Accuracy', 'Independence', 'Community Focus', 'Human Dignity', 'Accountability'].map(v => (
+            <div class="value-item">
+              <div class="value-dot" aria-hidden="true"></div>
+              <span>{v}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Education snapshot -->
+      <div class="snapshot-card">
+        <p class="label" style="margin-bottom: 1.5rem;">Currently</p>
+        <div class="snapshot-list">
+          <div class="snapshot-item">
+            <span class="snapshot-icon" aria-hidden="true">🎓</span>
+            <div>
+              <p class="snapshot-title">B.A. Journalism</p>
+              <p class="snapshot-sub">3rd Year · MES Mampad College</p>
+            </div>
+          </div>
+          <div class="snapshot-item">
+            <span class="snapshot-icon" aria-hidden="true">📺</span>
+            <div>
+              <p class="snapshot-title">MediaOne TV Intern</p>
+              <p class="snapshot-sub">Kozhikode, Kerala</p>
+            </div>
+          </div>
+          <div class="snapshot-item">
+            <span class="snapshot-icon" aria-hidden="true">🎙️</span>
+            <div>
+              <p class="snapshot-title">News Anchor — Swantham</p>
+              <p class="snapshot-sub">Part-time · Nilambur</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.skills-section {
+  background: var(--ink-2);
+  overflow: hidden;
+}
+
+.skills-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 50%, rgba(200, 145, 58, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.section-header { margin-bottom: 4rem; }
+.section-header em { color: var(--accent); font-style: italic; }
+
+/* Marquee */
+.marquee-wrap {
+  overflow: hidden;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line-dim);
+  border-bottom: 1px solid var(--line-dim);
+  margin-bottom: 0.5rem;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  will-change: transform;
+}
+
+.track-1 {
+  animation: marquee 30s linear infinite;
+}
+
+.track-2 {
+  animation: marquee 25s linear infinite reverse;
+}
+
+.marquee-track:hover { animation-play-state: paused; }
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 2rem;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.marquee-item:hover { color: var(--paper); }
+
+.marquee-item-alt {
+  color: var(--muted-2);
+}
+
+.marquee-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.marquee-dot-blue { background: var(--accent-2); }
+
+/* Skill bars */
+.skills-grid {
+  margin: 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 4rem;
+}
+
+.skill-bar-item {}
+
+.skill-bar-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-icon { font-size: 1rem; }
+
+.skill-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--paper);
+  flex: 1;
+}
+
+.skill-pct {
+  color: var(--accent);
+  font-size: 12px;
+  min-width: 3ch;
+  text-align: right;
+}
+
+.skill-track {
+  height: 3px;
+  background: var(--line-dim);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  border-radius: 2px;
+  transition: width 1.5s var(--ease-out);
+}
+
+/* Bottom row */
+.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.lang-card, .values-card, .snapshot-card {
+  padding: 2rem;
+  background: var(--ink);
+  border: 1px solid var(--line-dim);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.3s, transform 0.3s var(--ease-out);
+}
+
+.lang-card:hover, .values-card:hover, .snapshot-card:hover {
+  border-color: var(--line);
+  transform: translateY(-3px);
+}
+
+.lang-list { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line-dim);
+}
+
+.lang-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.lang-name {
+  font-weight: 500;
+  color: var(--paper);
+  font-size: 15px;
+}
+
+.value-list { display: flex; flex-direction: column; gap: 0.7rem; }
+
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 14px;
+  color: var(--paper-dim);
+}
+
+.value-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.snapshot-list { display: flex; flex-direction: column; gap: 1rem; }
+
+.snapshot-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.snapshot-icon { font-size: 1.2rem; margin-top: 2px; }
+
+.snapshot-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--paper);
+  margin-bottom: 0.15rem;
+}
+
+.snapshot-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .bottom-row { grid-template-columns: 1fr; }
+}
+</style>
+
+<script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
+// Reveal
+document.querySelectorAll('#skills .reveal-up').forEach((el) => {
+  gsap.to(el, {
+    opacity: 1,
+    y: 0,
+    duration: 0.9,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+    }
+  });
+});
+
+// Skill bars animation
+document.querySelectorAll('.skill-fill').forEach((fill) => {
+  const el = fill as HTMLElement;
+  const level = el.dataset.level || '0';
+  const pctEl = el.closest('.skill-bar-item')?.querySelector('.skill-pct') as HTMLElement;
+
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      gsap.to(el, {
+        width: `${level}%`,
+        duration: 1.8,
+        ease: 'power3.out',
+      });
+
+      if (pctEl) {
+        gsap.to({ val: 0 }, {
+          val: parseInt(level),
+          duration: 1.8,
+          ease: 'power3.out',
+          onUpdate: function() {
+            pctEl.textContent = `${Math.round(this.targets()[0].val)}%`;
+          }
+        });
+      }
+    }
+  });
+});
+</script>

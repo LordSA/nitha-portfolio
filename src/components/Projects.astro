@@ -1,0 +1,402 @@
+---
+// Projects.astro
+
+const projects = [
+  {
+    id: 'chaliyar',
+    title: 'Puzhayaan Nammal',
+    subtitle: 'Chronicles of Chaliyar',
+    type: 'Documentary Research',
+    period: 'Aug 2025 – Oct 2025',
+    org: 'Dr. Gafoor Memorial MES Mampad College',
+    description: 'Developed and contributed to the documentary "Puzhayaanu Nammal: Chronicles of the Chaliyar River" — a socially driven investigative piece exploring the environmental degradation and human stories of communities along the Chaliyar River.',
+    skills: ['Research Skills', 'Field Research', 'Documentary Production', 'Environmental Journalism'],
+    gradient: 'linear-gradient(135deg, #0a3d62 0%, #1B6CA8 50%, #0a2a45 100%)',
+    accent: '#1B6CA8',
+    icon: '🌊',
+    featured: true,
+  },
+  {
+    id: 'election',
+    title: 'Political Field Study',
+    subtitle: 'MLA & Local Election Coverage',
+    type: 'Field Research',
+    period: 'Jun 2025',
+    org: 'Dr. Gafoor Memorial MES Mampad College',
+    description: 'Conducted field research and in-depth interviews with an MLA and local election stakeholders to understand grassroots political dynamics, voter sentiment, and the mechanics of local democracy in Kerala.',
+    skills: ['Field Research', 'Journalism', 'Political Reporting', 'Interviewing'],
+    gradient: 'linear-gradient(135deg, #3d1f00 0%, #C8913A 50%, #2a1400 100%)',
+    accent: '#C8913A',
+    icon: '🗳️',
+    featured: false,
+  },
+  {
+    id: 'conference',
+    title: 'MESMAC International',
+    subtitle: 'Conference Coverage',
+    type: 'Event Coverage',
+    period: '2024–2025',
+    org: 'MES Mampad College',
+    description: 'Covered the MESMAC International Conference, practicing event journalism through documentation, live reporting, and capturing key moments and perspectives from academic and media professionals.',
+    skills: ['Event Coverage', 'Live Reporting', 'Media Documentation'],
+    gradient: 'linear-gradient(135deg, #1a001f 0%, #8B2FC9 50%, #0f0015 100%)',
+    accent: '#8B2FC9',
+    icon: '🎙️',
+    featured: false,
+  },
+];
+---
+
+<section id="projects" class="section projects-section" aria-label="Projects">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="section-header reveal-up" id="proj-header">
+      <span class="label">Projects</span>
+      <div class="divider"></div>
+      <h2 class="headline">
+        Stories that<br/><em>demanded telling.</em>
+      </h2>
+    </div>
+
+    <!-- Featured project -->
+    {projects.filter(p => p.featured).map(proj => (
+      <article class="project-featured reveal-up" id={`proj-${proj.id}`} aria-label={`Project: ${proj.title}`}>
+        <div class="proj-feat-content">
+          <div class="proj-feat-meta">
+            <span class="label" style={`color: ${proj.accent}`}>{proj.type}</span>
+            <span class="proj-period label" style="color: var(--muted); text-transform: none;">{proj.period}</span>
+          </div>
+          <h3 class="proj-feat-title headline">
+            <span class="proj-feat-emoji" aria-hidden="true">{proj.icon}</span>
+            {proj.title}
+          </h3>
+          <p class="proj-feat-sub label" style={`color: ${proj.accent}; margin: 0.5rem 0 1rem;`}>{proj.subtitle}</p>
+          <p class="body-lg proj-feat-desc">{proj.description}</p>
+          <div class="proj-tags" style="margin-top: 1.5rem;">
+            {proj.skills.map(s => (
+              <span class="skill-tag">{s}</span>
+            ))}
+          </div>
+          <div class="proj-feat-org">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span style="font-size: 13px; color: var(--muted);">{proj.org}</span>
+          </div>
+        </div>
+        <div class="proj-feat-visual" style={`background: ${proj.gradient}`} aria-hidden="true">
+          <div class="proj-visual-icon">{proj.icon}</div>
+          <div class="proj-visual-rings">
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+            <div class="ring r3"></div>
+          </div>
+        </div>
+      </article>
+    ))}
+
+    <!-- Other projects grid -->
+    <div class="projects-grid">
+      {projects.filter(p => !p.featured).map((proj, i) => (
+        <article class="project-card reveal-up" id={`proj-grid-${proj.id}`} data-cursor-hover>
+          <!-- Card glow on hover -->
+          <div class="card-glow" style={`background: ${proj.accent}`} aria-hidden="true"></div>
+
+          <div class="proj-card-top" style={`background: ${proj.gradient}`} aria-hidden="true">
+            <div class="proj-card-icon">{proj.icon}</div>
+          </div>
+
+          <div class="proj-card-body">
+            <div class="proj-card-meta">
+              <span class="label" style={`color: ${proj.accent}; font-size: 10px;`}>{proj.type}</span>
+              <span class="label" style="color: var(--muted); text-transform: none; font-size: 11px;">{proj.period}</span>
+            </div>
+            <h3 class="proj-card-title">{proj.title}</h3>
+            <p class="proj-card-sub" style={`color: ${proj.accent}`}>{proj.subtitle}</p>
+            <p class="proj-card-desc">{proj.description}</p>
+            <div class="proj-tags" style="margin-top: 1.25rem;">
+              {proj.skills.slice(0, 3).map(s => (
+                <span class="skill-tag">{s}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.projects-section {
+  background: var(--ink);
+}
+
+.section-header { margin-bottom: 4rem; }
+.section-header em { color: var(--accent); font-style: italic; }
+
+/* Featured */
+.project-featured {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 0;
+  border: 1px solid var(--line-dim);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 3rem;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.4s var(--ease-out);
+  background: var(--ink-2);
+}
+
+.project-featured:hover {
+  border-color: var(--line);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+.proj-feat-content {
+  padding: 3rem;
+}
+
+.proj-feat-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.proj-feat-emoji {
+  font-size: 2.5rem;
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 0 20px rgba(27, 108, 168, 0.4));
+}
+
+.proj-feat-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0;
+}
+
+.proj-feat-desc {
+  max-width: 540px;
+}
+
+.proj-feat-org {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  color: var(--muted);
+}
+
+/* Featured visual */
+.proj-feat-visual {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.proj-visual-icon {
+  font-size: 6rem;
+  filter: drop-shadow(0 0 40px rgba(27, 108, 168, 0.6));
+  animation: float 4s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.proj-visual-rings {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.07);
+  animation: ring-expand 4s ease-out infinite;
+}
+
+.ring.r1 { width: 120px; height: 120px; animation-delay: 0s; }
+.ring.r2 { width: 200px; height: 200px; animation-delay: 1s; }
+.ring.r3 { width: 300px; height: 300px; animation-delay: 2s; }
+
+@keyframes ring-expand {
+  0% { transform: scale(0.8); opacity: 0.4; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+
+/* Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.project-card {
+  position: relative;
+  border: 1px solid var(--line-dim);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--ink-2);
+  transition: border-color 0.3s, transform 0.4s var(--ease-out), box-shadow 0.3s;
+}
+
+.project-card:hover {
+  border-color: var(--line);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  filter: blur(60px);
+  transition: opacity 0.4s;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: var(--radius-lg);
+}
+
+.project-card:hover .card-glow { opacity: 0.08; }
+
+.proj-card-top {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.proj-card-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
+  animation: float 5s ease-in-out infinite;
+}
+
+.proj-card-body {
+  padding: 1.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.proj-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.proj-card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 0.2rem;
+}
+
+.proj-card-sub {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.proj-card-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* Shared */
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  padding: 0.25rem 0.7rem;
+  background: rgba(245, 240, 232, 0.05);
+  border: 1px solid var(--line-dim);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.proj-period {
+  color: var(--muted);
+  padding: 0.2rem 0.6rem;
+  background: var(--ink-2);
+  border: 1px solid var(--line-dim);
+  border-radius: 100px;
+}
+
+@media (max-width: 900px) {
+  .project-featured {
+    grid-template-columns: 1fr;
+  }
+  .proj-feat-visual { min-height: 200px; }
+}
+
+@media (max-width: 600px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
+// Reveal animations
+document.querySelectorAll('#projects .reveal-up').forEach((el, i) => {
+  gsap.to(el, {
+    opacity: 1,
+    y: 0,
+    duration: 0.9,
+    ease: 'power3.out',
+    delay: i * 0.08,
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+    }
+  });
+});
+
+// Magnetic effect on project cards
+document.querySelectorAll('.project-card').forEach((card) => {
+  const el = card as HTMLElement;
+
+  el.addEventListener('mousemove', (e: MouseEvent) => {
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+    const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+
+    gsap.to(el, {
+      rotateX: -y * 8,
+      rotateY: x * 8,
+      transformPerspective: 1000,
+      duration: 0.4,
+      ease: 'power2.out',
+    });
+  });
+
+  el.addEventListener('mouseleave', () => {
+    gsap.to(el, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.5,
+      ease: 'power3.out',
+    });
+  });
+});
+</script>
