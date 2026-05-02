@@ -1,0 +1,265 @@
+---
+// Nav.astro
+---
+
+<nav id="main-nav" class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner container">
+    <!-- Logo wordmark -->
+    <a href="#hero" class="nav-logo" id="nav-logo" aria-label="Nitha Sharin VP">
+      <span class="nav-logo-text">N<span class="accent">·</span>S<span class="accent">·</span>V</span>
+    </a>
+
+    <!-- Nav links -->
+    <ul class="nav-links" role="list">
+      <li><a href="#about" class="nav-link" data-cursor-hover>About</a></li>
+      <li><a href="#experience" class="nav-link" data-cursor-hover>Experience</a></li>
+      <li><a href="#projects" class="nav-link" data-cursor-hover>Projects</a></li>
+      <li><a href="#skills" class="nav-link" data-cursor-hover>Skills</a></li>
+      <li>
+        <a href="#contact" class="nav-cta" id="nav-cta" data-cursor-hover>
+          <span>Connect</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Mobile toggle -->
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" data-cursor-hover>
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="nav-mobile">
+    <ul class="nav-mobile-links" role="list">
+      <li><a href="#about" class="nav-mobile-link" id="mob-about">About</a></li>
+      <li><a href="#experience" class="nav-mobile-link" id="mob-exp">Experience</a></li>
+      <li><a href="#projects" class="nav-mobile-link" id="mob-proj">Projects</a></li>
+      <li><a href="#skills" class="nav-mobile-link" id="mob-skills">Skills</a></li>
+      <li><a href="#contact" class="nav-mobile-link" id="mob-contact">Connect</a></li>
+    </ul>
+  </div>
+
+  <!-- Section dots indicator -->
+  <div class="section-dots" id="section-dots" aria-hidden="true">
+    <div class="dot active" data-section="hero"></div>
+    <div class="dot" data-section="about"></div>
+    <div class="dot" data-section="experience"></div>
+    <div class="dot" data-section="projects"></div>
+    <div class="dot" data-section="skills"></div>
+    <div class="dot" data-section="contact"></div>
+  </div>
+</nav>
+
+<style>
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  transition: background 0.4s var(--ease-out), backdrop-filter 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: rgba(8, 8, 14, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-color: var(--line-dim);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--paper);
+  transition: color 0.3s;
+}
+
+.nav-logo-text .accent {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s var(--ease-out);
+}
+
+.nav-link:hover {
+  color: var(--paper);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.nav-cta:hover {
+  background: var(--accent);
+  color: var(--ink);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--paper);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-toggle.open span:first-child { transform: translateY(7.5px) rotate(45deg); }
+.nav-toggle.open span:last-child { transform: translateY(-7.5px) rotate(-45deg); }
+
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 72px;
+  left: 0; right: 0;
+  background: rgba(8, 8, 14, 0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  padding: 1.5rem;
+  transform: translateY(-20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s var(--ease-out), opacity 0.3s;
+}
+
+.nav-mobile.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-mobile-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nav-mobile-link {
+  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--paper);
+  transition: color 0.3s;
+}
+
+.nav-mobile-link:hover { color: var(--accent); }
+
+/* Section dots */
+.section-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: var(--z-nav);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted-2);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: var(--accent);
+  transform: scale(1.6);
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-mobile { display: block; }
+  .section-dots { display: none; }
+}
+</style>
+
+<script>
+  // Nav scroll behavior
+  const nav = document.getElementById('main-nav')!;
+  const toggle = document.getElementById('nav-toggle')!;
+  const mobileMenu = document.getElementById('nav-mobile')!;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav-mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+</script>

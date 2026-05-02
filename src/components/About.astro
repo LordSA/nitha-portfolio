@@ -1,0 +1,395 @@
+---
+// About.astro
+import nithaPhoto from '../assets/nitha.jpg';
+---
+
+<section id="about" class="section about-section" aria-label="About Nitha Sharin">
+  <div class="container about-grid">
+
+    <!-- LEFT: Photo column -->
+    <div class="about-photo-col">
+      <div class="photo-frame" id="photo-frame">
+        <div class="photo-clip" id="photo-clip">
+          <img
+            src={nithaPhoto.src}
+            alt="Nitha Sharin VP — Journalist and Broadcast Reporter"
+            class="about-photo"
+            id="about-photo"
+            loading="lazy"
+            width="480"
+            height="620"
+          />
+          <div class="photo-overlay" aria-hidden="true"></div>
+        </div>
+        <!-- Floating label -->
+        <div class="photo-badge" id="photo-badge">
+          <span class="label">Broadcast</span>
+          <span class="label accent-label">Journalism</span>
+        </div>
+        <!-- Corner accent -->
+        <div class="photo-corner tl" aria-hidden="true"></div>
+        <div class="photo-corner br" aria-hidden="true"></div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-item" id="stat-1">
+          <span class="stat-num display-2" data-count="3">0</span>
+          <span class="stat-label label">Years Study</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item" id="stat-2">
+          <span class="stat-num display-2" data-count="2">0</span>
+          <span class="stat-label label">Media Houses</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item" id="stat-3">
+          <span class="stat-num display-2" data-count="2">0</span>
+          <span class="stat-label label">Projects</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Bio column -->
+    <div class="about-bio-col">
+      <!-- Section label -->
+      <div class="reveal-up" id="about-label">
+        <span class="label">About</span>
+        <div class="divider"></div>
+      </div>
+
+      <h2 class="headline about-heading reveal-up" id="about-heading">
+        Voices from<br/>
+        <em>the ground.</em>
+      </h2>
+
+      <div class="about-text reveal-up" id="about-text-1">
+        <p class="body-lg">
+          I'm a third-year Journalism student at <strong>MES Mampad College</strong> with a strong passion for storytelling that brings out real voices from the ground.
+        </p>
+      </div>
+
+      <div class="about-text reveal-up" id="about-text-2">
+        <p class="body-lg">
+          My journey has shaped me through broadcast reporting, voice-over production, and media analysis — both in the classroom and in real newsrooms. My internship at <strong>MediaOne TV</strong> and reporting experience at <strong>Swantham Channel</strong> gave me deep insight into editorial workflows, live broadcast coordination, and ethical journalism under pressure.
+        </p>
+      </div>
+
+      <div class="about-text reveal-up" id="about-text-3">
+        <p class="body-lg">
+          I've investigated environmental and social narratives through documentary research on the <strong>Chaliyar River</strong>, and covered the <strong>MESMAC International Conference</strong>. I'm passionate about community-focused journalism and the kind of storytelling that actually matters.
+        </p>
+      </div>
+
+      <!-- Trait pills -->
+      <div class="trait-pills reveal-up" id="about-pills">
+        <span class="pill">Broadcast Reporting</span>
+        <span class="pill">Voice-Over Production</span>
+        <span class="pill">Media Analysis</span>
+        <span class="pill">Field Research</span>
+        <span class="pill">Ethical Journalism</span>
+        <span class="pill">Human Stories</span>
+      </div>
+
+      <!-- Education -->
+      <div class="education-card reveal-up" id="edu-card">
+        <div class="edu-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="edu-info">
+          <p class="label" style="margin-bottom: 0.2rem;">Education</p>
+          <p class="edu-degree">B.A. Journalism & Mass Communication</p>
+          <p class="edu-school" style="color: var(--muted); font-size: 14px;">Dr. Gafoor Memorial MES Mampad College · 2022–Present</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.about-section {
+  background: var(--ink);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: start;
+}
+
+/* Photo */
+.about-photo-col {
+  position: sticky;
+  top: 100px;
+}
+
+.photo-frame {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.photo-clip {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  clip-path: inset(100% 0 0 0);
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: scale(1.05);
+  transition: transform 6s var(--ease-out);
+}
+
+.photo-frame:hover .about-photo {
+  transform: scale(1);
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(8, 8, 14, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.photo-badge {
+  position: absolute;
+  bottom: 2rem;
+  right: -1.5rem;
+  background: rgba(8, 8, 14, 0.9);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.accent-label {
+  color: var(--accent);
+}
+
+.photo-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.photo-corner.tl {
+  top: -8px;
+  left: -8px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+
+.photo-corner.br {
+  bottom: -8px;
+  right: -8px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--ink-2);
+  border: 1px solid var(--line-dim);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  color: var(--muted);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 50px;
+  background: var(--line);
+  margin: 0 0.5rem;
+}
+
+/* Bio */
+.about-bio-col {
+  padding-top: 1rem;
+}
+
+.about-heading {
+  margin-bottom: 2rem;
+}
+
+.about-heading em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.about-text {
+  margin-bottom: 1.5rem;
+}
+
+.about-text strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* Pills */
+.trait-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 2rem 0;
+}
+
+.pill {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+
+.pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+/* Education */
+.education-card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--ink-2);
+  border: 1px solid var(--line-dim);
+  border-radius: var(--radius-lg);
+  border-left: 3px solid var(--accent);
+}
+
+.edu-icon {
+  padding: 0.6rem;
+  background: var(--accent-glow);
+  border-radius: var(--radius);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.edu-degree {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo-col {
+    position: static;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .photo-badge {
+    right: 0;
+  }
+}
+</style>
+
+<script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
+// Photo reveal
+ScrollTrigger.create({
+  trigger: '#photo-frame',
+  start: 'top 80%',
+  once: true,
+  onEnter: () => {
+    gsap.to('#photo-clip', {
+      clipPath: 'inset(0% 0 0 0)',
+      duration: 1.4,
+      ease: 'power4.out',
+      onComplete: () => {
+        gsap.to('#photo-badge', {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+          ease: 'power3.out',
+        });
+      }
+    });
+  }
+});
+
+// Reveal up items
+document.querySelectorAll('#about .reveal-up').forEach((el) => {
+  gsap.to(el, {
+    opacity: 1,
+    y: 0,
+    duration: 0.9,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+    }
+  });
+});
+
+// Counter animation
+document.querySelectorAll('.stat-num').forEach((el) => {
+  const target = parseInt((el as HTMLElement).dataset.count || '0');
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      gsap.to({ val: 0 }, {
+        val: target,
+        duration: 1.8,
+        ease: 'power2.out',
+        onUpdate: function() {
+          el.textContent = Math.round(this.targets()[0].val).toString();
+        }
+      });
+    }
+  });
+});
+</script>
